@@ -1,0 +1,14 @@
+
+language: node_js
+
+node_js:
+  - "7"
+
+cache:
+  yarn: true
+
+script:
+  - npm run unit
+
+after_success:
+  - npm run coverage

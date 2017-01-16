@@ -13,6 +13,7 @@
     "url": "https://github.com/airt/xdlms-fe/issues"
   },
   "dependencies": {
+    "element-ui": "^1.0.0",
     "timeout-ts": "^0.2.0",
     "vue": "^2.0.0",
     "vue-router": "^2.0.0"

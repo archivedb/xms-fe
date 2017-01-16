@@ -2,16 +2,22 @@
   <div class="home">
     <h2>routes</h2>
     <ul>
-      <li><router-link to="/hello">hello</router-link></li>
-      <li><router-link to="/about">about</router-link></li>
+      <li v-for="route in routes">
+        <router-link :to="route.path">
+          {{ route.component.name }}
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { routes } from '../router'
+
 export default {
   name: 'home',
   data: () => ({
+    routes,
   }),
 }
 </script>

@@ -1,18 +1,7 @@
-// the vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import './polyfills'
+import './vendors'
+import app from './app'
 
-import App from './app'
-import router from './router'
+// if (window.__INITIAL_STATE__) store.replaceState(window.__INITIAL_STATE__)
 
-Vue.use(ElementUI)
-
-// eslint-disable-next-line no-new
-new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: { App },
-  router,
-})
+app.$mount('#app')

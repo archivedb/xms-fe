@@ -1,26 +1,33 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from './components/home'
-import Hello from './components/hello'
-import Table from './components/table'
-import About from './components/about'
-import NotFound from './components/not-found'
+import About from './views/about.vue'
+import Fiddle from './views/fiddle.vue'
+import Routes from './views/routes.vue'
+import DashboardXs from './views/dashboard-xs.vue'
+import DashboardX from './views/dashboard-x.vue'
+import NotFound from './views/not-found.vue'
 
 Vue.use(Router)
 
 export const routes = [{
   path: '/',
-  component: Home,
-}, {
-  path: '/hello',
-  component: Hello,
-}, {
-  path: '/table',
-  component: Table,
+  redirect: '/dashboard',
 }, {
   path: '/about',
   component: About,
+}, {
+  path: '/fiddle',
+  component: Fiddle,
+}, {
+  path: '/routes',
+  component: Routes,
+}, {
+  path: '/dashboard',
+  component: DashboardXs,
+}, {
+  path: '/dashboard/x/:id',
+  component: DashboardX,
 }, {
   path: '*',
   component: NotFound,

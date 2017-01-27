@@ -1,4 +1,3 @@
-
 lib
 docs
 dist
@@ -8,6 +7,7 @@ pids
 lib-cov
 reports
 coverage
+flow-typed
 node_modules
 
 *.pem

@@ -1,0 +1,12 @@
+[ignore]
+.*/dist/.*
+.*/docs/.*
+.*/reports/.*
+.*/coverage/.*
+.*/node_modules/.*
+
+[libs]
+flow
+
+[options]
+module.name_mapper='^src/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'

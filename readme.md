@@ -1,41 +1,33 @@
-
-# xdlms-fe
+# xms-fe
 
 [![Build Status][build-badge]][build-status]
 [![Test Coverage][coverage-badge]][coverage-result]
 
-xdlms front end
+xms front end
 
-## build setup
+## scripts
 
 ```bash
 # install dependencies
-npm install
+yarn install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# serve with hot reload
+yarn run dev
 
-# build for production with minification
-npm run build
+# build for production
+yarn run build
 
 # run unit tests
-npm run unit
+yarn run unit
 
 # run e2e tests
-npm run e2e
+yarn run e2e
 
 # run all tests
-npm test
+yarn test
 ```
 
-for detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader)
-
-<!--
-[build-badge]: https://img.shields.io/travis/airt/xdlms-fe/develop.svg
-[build-status]: https://travis-ci.org/airt/xdlms-fe
--->
-
-[build-badge]: https://img.shields.io/circleci/project/github/airt/xdlms-fe/develop.svg
-[build-status]: https://circleci.com/gh/airt/xdlms-fe
-[coverage-badge]: https://img.shields.io/coveralls/airt/xdlms-fe/develop.svg
-[coverage-result]: https://coveralls.io/github/airt/xdlms-fe
+[build-badge]: https://img.shields.io/circleci/project/github/airt/xms-fe/develop.svg
+[build-status]: https://circleci.com/gh/airt/xms-fe
+[coverage-badge]: https://img.shields.io/coveralls/airt/xms-fe/develop.svg
+[coverage-result]: https://coveralls.io/github/airt/xms-fe

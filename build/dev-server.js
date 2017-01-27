@@ -1,81 +1,93 @@
-require('./check-versions')()
+// @flow
 
-const opn = require('opn')
-const path = require('path')
-const express = require('express')
-const webpack = require('webpack')
-const proxyMiddleware = require('http-proxy-middleware')
+import './check-versions'
 
-const config = require('../config')
-if (!process.env.NODE_ENV) process.env.NODE_ENV = config.dev.env.NODE_ENV
+import opn from 'opn'
+import http from 'http'
+import path from 'path'
+import express from 'express'
+import webpack from 'webpack'
+import createDevMiddleware from 'webpack-dev-middleware'
+import createHotMiddleware from 'webpack-hot-middleware'
+import createProxyMiddleware from 'http-proxy-middleware'
+import createHistoryApiFallback from 'connect-history-api-fallback'
 
-const webpackConfig = process.env.NODE_ENV === 'testing'
-  ? require('./webpack.prod.conf')
-  : require('./webpack.dev.conf')
+import { dev as config } from '../config'
 
-// default port where dev server listens for incoming traffic
-const port = process.env.PORT || config.dev.port
+if (!process.env.NODE_ENV) process.env.NODE_ENV = config.env.NODE_ENV
 
-// define http proxies to your custom api backend
-// https://github.com/chimurai/http-proxy-middleware
-const proxyTable = config.dev.proxyTable
+const { default: webpackConfig } = process.env.NODE_ENV === 'testing'
+  ? require('../config/webpack.prod')
+  : require('../config/webpack.dev')
 
 const app = express()
 const compiler = webpack(webpackConfig)
 
-const devMiddleware = require('webpack-dev-middleware')(compiler, {
-  publicPath: webpackConfig.output.publicPath,
-  quiet: true
+// https://github.com/chimurai/http-proxy-middleware
+Object.entries(config.proxyTable).forEach(([context, options]) => {
+  app.use(createProxyMiddleware(
+    context,
+    typeof options === 'string' ? { target: options } : options,
+  ))
 })
 
-const hotMiddleware = require('webpack-hot-middleware')(compiler, {
-  log: () => {}
+const devMiddleware = createDevMiddleware(compiler, {
+  publicPath: webpackConfig.output.publicPath,
+  quiet: true,
+})
+
+const hotMiddleware = createHotMiddleware(compiler, {
+  log: () => {},
 })
 
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', (compilation) => {
-  compilation.plugin('html-webpack-plugin-after-emit', (data, cb) => {
+  compilation.plugin('html-webpack-plugin-after-emit', (data, callback) => {
     hotMiddleware.publish({ action: 'reload' })
-    cb()
+    callback()
   })
 })
 
-// proxy api requests
-Object.keys(proxyTable).forEach((context) => {
-  const options = typeof proxyTable[context] === 'string'
-    ? { target: proxyTable[context] }
-    : proxyTable[context]
-  app.use(proxyMiddleware(context, options))
-})
-
 // handle fallback for html5 history api
-app.use(require('connect-history-api-fallback')())
+app.use(createHistoryApiFallback())
 
 // serve webpack bundle output
 app.use(devMiddleware)
 
-// enable hot-reload and state-preserving
-// compilation error display
+// enable hot-reload and state-preserving compilation error display
 app.use(hotMiddleware)
 
 // serve pure static assets
-const staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+const staticPath = path.posix.join(config.assetsPublicPath, config.assetsSubDirectory)
+
 app.use(staticPath, express.static('./static'))
 
-const uri = `http://localhost:${port}`
+const server = http.createServer(app)
 
 devMiddleware.waitUntilValid(() => {
-  console.log(`> listening at ${uri}\n`)
-})
-
-module.exports = app.listen(port, (err) => {
-  if (err) {
-    console.log(err)
-    return
-  }
-
-  // when env is testing, don't need open it
-  if (process.env.NODE_ENV !== 'testing') {
-    opn(uri)
+  const url = `http://localhost:${server.address().port}`
+  console.log(`> listening at ${url}\n`)
+  if (process.env.NODE_ENV === 'development') {
+    opn(url)
   }
 })
+
+const start = () => {
+  server.listen(config.port, (err) => {
+    if (err) console.error(err)
+    console.log(`> server started at port ${config.port}`)
+  })
+}
+
+const close = () => {
+  server.close()
+}
+
+export default {
+  start,
+  close,
+}
+
+if (require.main === module) {
+  start()
+}

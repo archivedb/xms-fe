@@ -1,9 +1,13 @@
 {
-  "presets": ["es2015", "stage-2"],
-  "plugins": ["transform-runtime"],
   "comments": false,
+  "presets": ["latest", "stage-2"],
+  "plugins": [
+    "transform-runtime",
+    "transform-do-expressions",
+    "transform-flow-strip-types"
+  ],
   "env": {
-    "test": {
+    "testing": {
       "plugins": ["istanbul"]
     }
   }

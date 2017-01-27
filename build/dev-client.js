@@ -1,8 +1,10 @@
+// https://github.com/glenjamin/webpack-hot-middleware#client
+
 require('eventsource-polyfill')
 
-const hotClient = require('webpack-hot-middleware/client?noInfo=true&reload=true')
+const client = require('webpack-hot-middleware/client?noInfo=true&reload=true')
 
-hotClient.subscribe((event) => {
+client.subscribe((event) => {
   if (event.action === 'reload') {
     window.location.reload()
   }

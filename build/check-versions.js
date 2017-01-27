@@ -1,32 +1,29 @@
-const chalk = require('chalk')
-const semver = require('semver')
-const childprocess = require('child_process')
+// @flow
 
-const packageConfig = require('../package.json')
+import chalk from 'chalk'
+import semver from 'semver'
+import childprocess from 'child_process'
 
 const exec = (cmd) =>
   childprocess.execSync(cmd).toString().trim()
 
-const versionRequirements = [
-  {
-    name: 'node',
-    current: semver.clean(process.version),
-    requirement: packageConfig.engines.node,
-  },
-  {
-    name: 'npm',
-    current: exec('npm --version'),
-    requirement: packageConfig.engines.npm,
-  },
-]
+const versionRequirements = [{
+  name: 'node',
+  current: semver.clean(process.version),
+  requirement: '>= 4.0.0',
+}, {
+  name: 'npm',
+  current: exec('npm --version'),
+  requirement: '>= 3.0.0',
+}]
 
-module.exports = () => {
+const checkVersions = () => {
   const warnings = versionRequirements.reduce((warnings, mod) => (
     semver.satisfies(mod.current, mod.requirement)
       ? warnings
-      : warnings.concat([
-        `${mod.name}: ${chalk.red(mod.current)} should be ${chalk.green(mod.requirement)}`
-      ])
+      : warnings.concat(
+        [`${mod.name}: ${chalk.red(mod.current)} should be ${chalk.green(mod.requirement)}`]
+      )
   ), [])
 
   if (warnings.length > 0) {
@@ -40,3 +37,5 @@ module.exports = () => {
     process.exit(1)
   }
 }
+
+checkVersions()

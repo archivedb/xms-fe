@@ -1,30 +1,28 @@
-/* global cp rm mkdir */
+// @flow
 
-process.env.NODE_ENV = 'production'
+import './check-versions'
 
-// https://github.com/shelljs/shelljs
-require('shelljs/global')
-require('./check-versions')()
+import ora from 'ora'
+import path from 'path'
+import shell from 'shelljs'
+import webpack from 'webpack'
 
-const ora = require('ora')
-const path = require('path')
-const webpack = require('webpack')
-
-const config = require('../config')
-const webpackConfig = require('./webpack.prod.conf')
+import { build as config } from '../config'
+import webpackConfig from '../config/webpack.prod'
 
 console.log(`
-  tip:
+Tips:
   built files are meant to be served over an http server.
-  opening index.html over file:// won't work.
+  open index.html over file:// won't work.
 `)
 
-const assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
-rm('-rf', assetsPath)
-mkdir('-p', assetsPath)
-cp('-R', 'static/*', assetsPath)
+const assetsPath = path.join(config.assetsRoot, config.assetsSubDirectory)
+shell.rm('-rf', assetsPath)
+shell.mkdir('-p', assetsPath)
+shell.cp('-R', 'static/*', assetsPath)
 
 const spinner = ora('building for production...')
+
 spinner.start()
 
 webpack(webpackConfig, (err, stats) => {
@@ -35,6 +33,6 @@ webpack(webpackConfig, (err, stats) => {
     modules: false,
     children: false,
     chunks: false,
-    chunkModules: false
+    chunkModules: false,
   }) + '\n')
 })

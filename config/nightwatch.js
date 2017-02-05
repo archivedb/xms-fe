@@ -1,16 +1,10 @@
 // @flow
 
-require('babel-register')
-const fs = require('fs')
+require('../build/register')
+
 const chromedriver = require('chromedriver')
+const seleniumServer = require('selenium-server')
 const { dev: config } = require('../config')
-
-const seleniumServerDir = 'node_modules/selenium-server/lib/runner/'
-const seleniumServerFilename = fs.readdirSync(seleniumServerDir).
-  find((name) => name.includes('selenium-server-standalone')) || ''
-const seleniumServerPath = seleniumServerDir + seleniumServerFilename
-
-console.log(`Using selenium-server:\n  ${seleniumServerPath}\n`)
 
 // http://nightwatchjs.org/guide#settings-file
 module.exports = {
@@ -21,7 +15,7 @@ module.exports = {
 
   selenium: {
     start_process: true,
-    server_path: seleniumServerPath,
+    server_path: seleniumServer.path,
     host: '127.0.0.1',
     port: 4444,
     cli_args: {

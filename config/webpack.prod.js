@@ -6,24 +6,18 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 import { build as config } from '../config'
-import { assetsPath, vueCssLoaders, styleLoaders, stringifyObjectValues } from '../build/utils'
+import { assetsPath, styleLoaders, stringifyObjectValues } from '../build/utils'
 import webpackBaseConfig from './webpack.base'
 
 export default merge(webpackBaseConfig, {
   devtool: config.productionSourceMap ? '#source-map' : false,
   module: {
-    loaders: styleLoaders({ sourceMap: config.productionSourceMap, extract: true }),
+    rules: styleLoaders({ sourceMap: config.productionSourceMap, extract: true }),
   },
   output: {
     path: config.assetsRoot,
     filename: assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: assetsPath('js/[id].[chunkhash].js'),
-  },
-  vue: {
-    loaders: vueCssLoaders({
-      sourceMap: config.productionSourceMap,
-      extract: true,
-    }),
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -33,7 +27,6 @@ export default merge(webpackBaseConfig, {
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     // extract css into its own file
     new ExtractTextPlugin(assetsPath('css/[name].[contenthash].css')),
     // https://github.com/ampedandwired/html-webpack-plugin

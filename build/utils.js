@@ -26,7 +26,7 @@ export const vueCssLoaders = (options: Object = {}) => {
     // (which is the case during production build)
     // http://vuejs.github.io/vue-loader/en/configurations/extract-css.html
     return options.extract
-      ? ExtractTextPlugin.extract('vue-style-loader', sourceLoader)
+      ? ExtractTextPlugin.extract({ use: sourceLoader, fallback: 'vue-style-loader' })
       : ['vue-style-loader', sourceLoader].join('!')
   }
 

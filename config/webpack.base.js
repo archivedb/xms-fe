@@ -1,18 +1,10 @@
 // @flow
 
-import autoprefixer from 'autoprefixer'
 import eslintFriendlyFormatter from 'eslint-friendly-formatter'
 
 import config from '../config'
-import { absPath, assetsPath, vueCssLoaders } from '../build/utils'
-
-// check env & config/index.js to decide whether to enable css source maps for the
-// various preprocessor loaders added to vue-loader at the end of this file
-const cssSourceMapDev =
-  process.env.NODE_ENV === 'development' && config.cssSourceMap || false
-const cssSourceMapProd =
-  process.env.NODE_ENV === 'production' && config.productionSourceMap || false
-const cssSourceMap = cssSourceMapDev || cssSourceMapProd
+import vueLoaderConfig from '../config/vue-loader'
+import { absPath, assetsPath } from '../build/utils'
 
 export default {
   entry: {
@@ -24,8 +16,11 @@ export default {
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['', '.vue', '.js', '.ts', '.json'],
-    fallback: [absPath('node_modules')],
+    extensions: ['.vue', '.js', '.ts', '.json'],
+    modules: [
+      absPath('src'),
+      absPath('node_modules'),
+    ],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
       'src': absPath('src'),
@@ -33,23 +28,18 @@ export default {
       'components': absPath('src/components'),
     },
   },
-  resolveLoader: {
-    fallback: [absPath('node_modules')],
-  },
   module: {
-    preLoaders: [{
-      test: /\.vue$/,
-      loader: 'eslint',
+    rules: [{
+      test: /\.(vue|jsx?)$/,
+      loader: 'eslint-loader',
+      enforce: 'pre',
       exclude: /node_modules/,
+      options: { formatter: eslintFriendlyFormatter },
     }, {
-      test: /\.jsx?$/,
-      loader: 'eslint',
-      exclude: /node_modules/,
-    }],
-    loaders: [{
       test: /\.vue$/,
       loader: 'vue-loader',
       exclude: /node_modules/,
+      options: vueLoaderConfig,
     }, {
       test: /\.jsx?$/,
       loader: 'babel-loader',
@@ -59,33 +49,23 @@ export default {
       loader: 'ts-loader',
       exclude: /node_modules/,
     }, {
+      // TODO https://webpack.js.org/guides/migrating/#json-loader-is-not-required-anymore
       test: /\.json$/,
-      loader: 'json',
+      loader: 'json-loader',
     }, {
       test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-      loader: 'url',
+      loader: 'url-loader',
       query: {
         limit: 10000,
         name: assetsPath('images/[name].[hash:7].[ext]'),
       },
     }, {
       test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-      loader: 'url',
+      loader: 'url-loader',
       query: {
         limit: 10000,
         name: assetsPath('fonts/[name].[hash:7].[ext]'),
       },
     }],
-  },
-  eslint: {
-    formatter: eslintFriendlyFormatter,
-  },
-  vue: {
-    loaders: vueCssLoaders({ sourceMap: cssSourceMap }),
-    postcss: [
-      autoprefixer({
-        browsers: ['last 2 versions'],
-      }),
-    ],
   },
 }

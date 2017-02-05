@@ -1,32 +1,7 @@
 // @flow
 
-import webpack from 'webpack'
-import merge from 'webpack-merge'
-
-import config from '../config'
-import { absPath, styleLoaders, stringifyObjectValues } from '../build/utils'
-import webpackBaseConfig from './webpack.base'
-
-const webpackTestConfig = merge(webpackBaseConfig, {
-  // use inline sourcemap for karma-sourcemap-loader
-  devtool: '#inline-source-map',
-  module: {
-    loaders: styleLoaders(),
-  },
-  vue: {
-    loaders: {
-      js: 'babel-loader',
-    },
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': stringifyObjectValues(config.env),
-    }),
-  ],
-})
-
-// no need for app entry during tests
-Reflect.deleteProperty(webpackTestConfig, 'entry')
+import { absPath } from '../build/utils'
+import webpackTestConfig from './webpack.test'
 
 // https://github.com/webpack/karma-webpack/
 // https://karma-runner.github.io/latest/config/configuration-file.html

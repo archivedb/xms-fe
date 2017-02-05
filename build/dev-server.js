@@ -1,7 +1,5 @@
 // @flow
 
-import './check-versions'
-
 import opn from 'opn'
 import http from 'http'
 import path from 'path'
@@ -72,14 +70,14 @@ devMiddleware.waitUntilValid(() => {
   }
 })
 
-const start = () => {
+export const start = () => {
   server.listen(config.port, (err) => {
     if (err) console.error(err)
-    console.log(`> server started at port ${config.port}`)
+    console.log(`> server started at port ${config.port}\n`)
   })
 }
 
-const close = () => {
+export const close = () => {
   server.close()
 }
 

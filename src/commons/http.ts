@@ -19,11 +19,11 @@ const checkStatus = async (response: Response): Promise<Response> => {
   return response
 }
 
-export class Request {
+export class HttpClient {
 
   constructor(
     private defaultRequestInit: RequestInit = {},
-  ) { }
+  ) {}
 
   /**
    * @tutorial https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
@@ -31,11 +31,11 @@ export class Request {
    */
   apply = async <T>(url: string, requestInit: RequestInit = {}): Promise<T> => {
     const actualRequestInit = mergeRequestInit(this.defaultRequestInit, requestInit)
-    // trace('[utils/request] request init')({ url, actualRequestInit })
+    // trace('[request] request args')({ url, actualRequestInit })
     const response = await fetch(url, actualRequestInit)
     await checkStatus(response)
-    const data = (await response.json()) as T
-    // trace('[utils/request] response data')(data)
+    const data = await response.json<T>()
+    // trace('[request] response data')(data)
     return data
   }
 
@@ -47,6 +47,9 @@ export class Request {
 
   put = <T>(url: string, data: Object) =>
     this.apply<T>(url, { method: 'PUT', body: JSON.stringify(data) })
+
+  patch = <T>(url: string, data: Object) =>
+    this.apply<T>(url, { method: 'PATCH', body: JSON.stringify(data) })
 
   delete = <T>(url: string, data: Object) =>
     this.apply<T>(`${url}?${qs.stringify(data)}`, { method: 'DELETE' })
@@ -61,4 +64,4 @@ const defaultRequestInit: RequestInit = {
   credentials: 'same-origin',
 }
 
-export default new Request(defaultRequestInit)
+export default new HttpClient(defaultRequestInit)

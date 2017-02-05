@@ -100,14 +100,14 @@
     "webpack-merge": "^2.0.0"
   },
   "scripts": {
-    "dev": "babel-node build/dev-server.js",
+    "dev": "bin/run dev",
     "lint": "npm run lint:es && npm run lint:ts",
     "lint:es": "eslint '**/*.js' '**/*.vue'",
     "lint:ts": "tslint '**/*.ts' --exclude '**/*.d.ts' --exclude 'node_modules/**/*'",
-    "test": "npm run unit && npm run e2e",
-    "unit": "NODE_ENV=testing BABEL_ENV=testing babel-node build/unit-runner.js",
-    "e2e": "NODE_ENV=testing PORT=8070 babel-node build/e2e-runner.js",
-    "build": "NODE_ENV=production babel-node build/build.js",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "bin/run test unit",
+    "test:e2e": "bin/run test e2e",
+    "build": "bin/run build",
     "coverage": "cat test/unit/coverage/lcov.info | coveralls"
   }
 }

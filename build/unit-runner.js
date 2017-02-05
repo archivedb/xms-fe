@@ -1,6 +1,5 @@
 // @flow
 
-import path from 'path'
 import karma from 'karma'
 import { absPath } from './utils'
 
@@ -12,4 +11,12 @@ const options = {
 // https://karma-runner.github.io/latest/dev/public-api.html
 const server = new karma.Server(options)
 
-server.start()
+export const start = () => {
+  server.start()
+}
+
+export default { start }
+
+if (require.main === module) {
+  start()
+}

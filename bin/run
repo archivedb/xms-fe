@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+require('babel-register')({
+  babelrc: false,
+  plugins: [
+    'transform-flow-strip-types',
+    'transform-object-rest-spread',
+    'transform-es2015-modules-commonjs',
+  ],
+})
+
+require('../build').run(process.argv)

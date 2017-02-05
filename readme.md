@@ -27,6 +27,10 @@ yarn run e2e
 yarn test
 ```
 
+## license
+
+GPLv3
+
 [build-badge]: https://img.shields.io/circleci/project/github/airt/xms-fe/develop.svg
 [build-status]: https://circleci.com/gh/airt/xms-fe
 [coverage-badge]: https://img.shields.io/coveralls/airt/xms-fe/develop.svg

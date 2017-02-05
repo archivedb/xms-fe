@@ -17,7 +17,7 @@ const versionRequirements = [{
   requirement: '>= 3.0.0',
 }]
 
-const checkVersions = () => {
+export const check = () => {
   const warnings = versionRequirements.reduce((warnings, mod) => (
     semver.satisfies(mod.current, mod.requirement)
       ? warnings
@@ -38,4 +38,8 @@ const checkVersions = () => {
   }
 }
 
-checkVersions()
+export default { check }
+
+if (require.main === module) {
+  check()
+}

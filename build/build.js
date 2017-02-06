@@ -17,13 +17,14 @@ export const start = () => {
   shell.cp('-R', 'static/*', assetsPath)
   shell.config.silent = false
 
-  const spinner = ora('building for production...')
+  const spinner = ora('building for production..')
 
   spinner.start()
 
   webpack(webpackConfig, (err, stats) => {
     spinner.stop()
     if (err) throw err
+
     process.stdout.write(stats.toString({
       colors: true,
       modules: false,
@@ -31,16 +32,16 @@ export const start = () => {
       chunks: false,
       chunkModules: false,
     }) + '\n\n')
-  })
 
-  console.log(chalk.cyan(`
-  Build complete.
-  `))
-  console.log(chalk.yellow(`
-  Tips:
-    Built files are meant to be served over an http server.
-    Open index.html over file:// won't work.
-  `))
+    console.log(chalk.cyan(`
+      Build complete.
+    `.trimRight()))
+    console.log(chalk.yellow(`
+      Tips:
+        Built files are meant to be served over an http server.
+        Open index.html over file:// won't work.
+    `))
+  })
 }
 
 export default { start }

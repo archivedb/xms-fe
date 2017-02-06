@@ -2,14 +2,15 @@
 
 import webpack from 'webpack'
 import merge from 'webpack-merge'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
+import HtmlPlugin from 'html-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 import { build as config } from '../config'
 import { assetsPath, styleLoaders, stringifyObjectValues } from '../build/utils'
 import webpackBaseConfig from './webpack.base'
 
-export default merge(webpackBaseConfig, {
+const webpackProdConfig = merge(webpackBaseConfig, {
   devtool: config.productionSourceMap ? '#source-map' : false,
   module: {
     rules: styleLoaders({ sourceMap: config.productionSourceMap, extract: true }),
@@ -26,11 +27,12 @@ export default merge(webpackBaseConfig, {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
+      sourceMap: true,
     }),
     // extract css into its own file
     new ExtractTextPlugin(assetsPath('css/[name].[contenthash].css')),
     // https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
+    new HtmlPlugin({
       filename: config.index,
       template: 'src/index.html',
       inject: true,
@@ -62,3 +64,10 @@ export default merge(webpackBaseConfig, {
     }),
   ],
 })
+
+// https://github.com/th0r/webpack-bundle-analyzer
+if (config.bundleAnalyzerReport) {
+  webpackProdConfig.plugins.push(new BundleAnalyzerPlugin())
+}
+
+export default webpackProdConfig

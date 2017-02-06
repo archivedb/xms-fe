@@ -1,10 +1,10 @@
 // @flow
 
 import karma from 'karma'
-import { absPath } from './utils'
+import { buildRootPath } from './paths'
 
 const options = {
-  configFile: absPath('config/karma.js'),
+  configFile: buildRootPath('config/karma.js'),
   singleRun: true,
 }
 

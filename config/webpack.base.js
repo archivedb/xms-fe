@@ -1,15 +1,28 @@
 // @flow
 
+import { readFileSync } from 'fs'
 import eslintFriendlyFormatter from 'eslint-friendly-formatter'
 
 import config from '../config'
 import vueLoaderConfig from '../config/vue-loader'
-import { absPath, assetsPath } from '../build/utils'
+import { projectPath } from '../build/paths'
+import { assetsPath, mapObjectValues } from '../build/utils'
+
+const projectPackageConfig =
+  JSON.parse(readFileSync(projectPath('package.json'), 'utf-8'))
+
+const makeEntryPathAbsolute = mapObjectValues(projectPath)
+
+const entry = makeEntryPathAbsolute(projectPackageConfig.entry || {
+  entry: {
+    app: 'src/index.js',
+  },
+})
+
+console.log('entry', entry)
 
 export default {
-  entry: {
-    app: absPath('src/main.js'),
-  },
+  entry,
   output: {
     path: config.assetsRoot,
     publicPath: config.assetsPublicPath,
@@ -18,14 +31,13 @@ export default {
   resolve: {
     extensions: ['.vue', '.js', '.ts', '.json'],
     modules: [
-      absPath('src'),
-      absPath('node_modules'),
+      projectPath('src'),
+      projectPath('node_modules'),
     ],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
-      'src': absPath('src'),
-      'assets': absPath('src/assets'),
-      'components': absPath('src/components'),
+      'src': projectPath('src'),
+      'assets': projectPath('src/assets'),
     },
   },
   module: {

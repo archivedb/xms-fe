@@ -12,19 +12,22 @@ xms front end
 yarn install
 
 # serve with hot reload
-yarn run dev
+npm run dev
 
 # build for production
-yarn run build
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
 
 # run unit tests
-yarn run unit
+npm run unit
 
 # run e2e tests
-yarn run e2e
+npm run e2e
 
 # run all tests
-yarn test
+npm test
 ```
 
 ## license

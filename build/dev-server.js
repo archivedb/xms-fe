@@ -24,7 +24,7 @@ const compiler = webpack(webpackConfig)
 // https://github.com/chimurai/http-proxy-middleware
 Object.entries(config.proxyTable).forEach(([context, options]) => {
   app.use(createProxyMiddleware(
-    context,
+    (options: any).filter || context,
     typeof options === 'string' ? { target: options } : options,
   ))
 })

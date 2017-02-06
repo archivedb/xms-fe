@@ -5,9 +5,6 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 import config from '../config'
 
-export const absPath = (...paths: Array<string>) =>
-  path.join(path.resolve(__dirname, '..'), ...paths)
-
 export const assetsPath = (name: string) =>
   path.posix.join(config.assetsSubDirectory, name)
 
@@ -49,7 +46,10 @@ export const styleLoaders = (options: Object = {}) =>
       loader: loader,
     }))
 
-export const stringifyObjectValues = (o: Object) =>
+export const mapObjectValues = (f: (v: any) => any) => (o: Object) =>
   Object.entries(o).
-    map(([k, v]) => [k, JSON.stringify(v)]).
-    reduce((z, [k, v]) => ({ ...z, [k]: v }), {})
+    map(([k, v]) => ({ [k]: f(v) })).
+    reduce((z, o) => Object.assign(z, o), {})
+
+export const stringifyObjectValues =
+  mapObjectValues(v => JSON.stringify(v))

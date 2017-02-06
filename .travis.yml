@@ -6,9 +6,13 @@ node_js:
 cache:
   yarn: true
 
+before_script:
+  - node_modules/.bin/flow-typed install
+  - node_modules/.bin/flow check
+
 script:
   - npm run lint
-  - npm run test:unit
+  - npm test
 
 after_success:
   - npm run coverage

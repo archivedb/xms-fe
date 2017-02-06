@@ -101,7 +101,7 @@
   },
   "scripts": {
     "dev": "bin/run dev",
-    "lint": "npm run lint:es && npm run lint:ts && flow check",
+    "lint": "npm run lint:es && npm run lint:ts",
     "lint:es": "eslint '**/*.js' '**/*.vue'",
     "lint:ts": "tslint '**/*.ts' --exclude '**/*.d.ts' --exclude 'node_modules/**/*'",
     "test": "npm run test:unit && npm run test:e2e",

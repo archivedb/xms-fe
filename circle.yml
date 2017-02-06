@@ -3,6 +3,9 @@ machine:
     version: 7
 
 test:
+  pre:
+    - node_modules/.bin/flow-typed install
+    - node_modules/.bin/flow check
   override:
     - npm run lint
     - npm test

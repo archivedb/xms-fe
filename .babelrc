@@ -7,7 +7,6 @@
   ],
   "plugins": [
     "transform-runtime",
-    "transform-do-expressions",
     "transform-flow-strip-types"
   ],
   "env": {

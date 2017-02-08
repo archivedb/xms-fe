@@ -3,9 +3,8 @@ import MainLayout from 'src/components/layouts/main-layout.vue'
 import router from 'src/router'
 
 describe('components/layouts/main-layout.vue', () => {
-  it('should render correct contents', () => {
+  it('component main-layout', () => {
     const vm = new Vue({
-      el: document.createElement('div'),
       data: () => ({
         user: {
           name: 'U',
@@ -20,7 +19,7 @@ describe('components/layouts/main-layout.vue', () => {
       `,
       components: { MainLayout },
       router,
-    })
+    }).$mount()
     expect(vm.$el.querySelector('div.content').textContent).
       to.equal('test-content')
   })

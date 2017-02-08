@@ -1,7 +1,5 @@
 language: node_js
 
-sudo: false
-
 dist: trusty
 
 node_js:
@@ -28,4 +26,4 @@ script:
   - npm test
 
 after_success:
-  - npm install coveralls && cat test/unit/coverage/lcov.info | coveralls
+  - npm i coveralls && cat test/unit/coverage/lcov.info | coveralls

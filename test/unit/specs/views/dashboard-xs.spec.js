@@ -3,12 +3,9 @@ import DashboardXs from 'src/views/dashboard-xs.vue'
 import router from 'src/router'
 
 describe('views/dashboard-xs.vue', () => {
-  it('should render correct contents', async () => {
-    const vm = new Vue({
-      el: document.createElement('div'),
-      render: (h) => h(DashboardXs),
-      router,
-    })
+  it('view dashboard-xs', async () => {
+    const Constructor = Vue.extend(DashboardXs)
+    const vm = new Constructor({ router }).$mount()
     expect(vm.$el.querySelector('h3').textContent).
       to.not.empty
   })

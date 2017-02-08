@@ -1,7 +1,7 @@
-import Vue from 'vue'
+import * as Vue from 'vue'
 import router from './router'
 // import store from './store'
-import App from './views/app.vue'
+import * as App from './components/app.vue'
 
 export { router }
 

@@ -1,9 +1,8 @@
 import { createApp } from 'src/app'
 
-describe('app.js', () => {
-  it('should mount correctly', async () => {
-    const vm = createApp()
-    vm.$mount(document.createElement('div'))
+describe('app.ts', () => {
+  it('function createApp', async () => {
+    const vm = createApp().$mount()
     expect(vm.$el.id).to.equal('app')
   })
 })

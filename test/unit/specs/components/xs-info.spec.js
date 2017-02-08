@@ -1,12 +1,11 @@
 import Vue from 'vue'
-import XsInfo from 'src/components/xs-info.vue'
 import X from 'src/entities/x'
+import XsInfo from 'src/components/xs-info.vue'
 import router from 'src/router'
 
 describe('components/xs-info.vue', () => {
-  it('should render correct contents', () => {
+  it('component xs-info', () => {
     const vm = new Vue({
-      el: document.createElement('div'),
       data: () => ({
         x: X.default,
       }),
@@ -15,7 +14,7 @@ describe('components/xs-info.vue', () => {
       `,
       components: { XsInfo },
       router,
-    })
+    }).$mount()
     expect(vm.$el.querySelector('tbody').childElementCount).
       to.equal(1)
   })

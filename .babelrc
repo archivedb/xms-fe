@@ -1,9 +1,9 @@
 {
   "comments": false,
-  // "presets": ["latest", "stage-2"],
   "presets": [
     "stage-2",
-    ["latest", { "es2015": { "modules": false } }]
+    "latest"
+    // ["latest", { "es2015": { "modules": false } }]
   ],
   "plugins": [
     "transform-runtime",

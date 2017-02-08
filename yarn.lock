@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@types/chai@^3.0.0":
+"@types/chai@*", "@types/chai@^3.0.0":
   version "3.4.34"
   resolved "http://registry.npm.taobao.org/@types/chai/download/@types/chai-3.4.34.tgz#d5335792823bb09cddd5e38c3d211b709183854d"
 
@@ -17,6 +17,17 @@
 "@types/qs@^6.0.0":
   version "6.2.30"
   resolved "http://registry.npm.taobao.org/@types/qs/download/@types/qs-6.2.30.tgz#139e247511ee3b9be539cdd553c8fdb33c1f624e"
+
+"@types/sinon-chai@^2.0.0":
+  version "2.7.27"
+  resolved "http://registry.npm.taobao.org/@types/sinon-chai/download/@types/sinon-chai-2.7.27.tgz#eb7729058ddf253a6979e559bb2b491084969aa1"
+  dependencies:
+    "@types/chai" "*"
+    "@types/sinon" "*"
+
+"@types/sinon@*", "@types/sinon@^1.0.0":
+  version "1.16.34"
+  resolved "http://registry.npm.taobao.org/@types/sinon/download/@types/sinon-1.16.34.tgz#a9761fff33d0f7b3fe61875b577778a2576a9a03"
 
 "@types/whatwg-fetch@^0.0.33":
   version "0.0.33"
@@ -3717,11 +3728,7 @@ lowercase-keys@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/lowercase-keys/download/lowercase-keys-1.0.0.tgz#4e3366b39e7f5457e35f1324bdf6f88d0bfc7306"
 
-lru-cache@2:
-  version "2.7.3"
-  resolved "http://registry.npm.taobao.org/lru-cache/download/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"
-
-lru-cache@2.2.x:
+lru-cache@2, lru-cache@2.2.x:
   version "2.2.4"
   resolved "http://registry.npm.taobao.org/lru-cache/download/lru-cache-2.2.4.tgz#6c658619becf14031d0d0b594b16042ce4dc063d"
 
@@ -5855,9 +5862,9 @@ vary@~1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/vary/download/vary-1.1.0.tgz#e1e5affbbd16ae768dd2674394b9ad3022653140"
 
-"vbt@github:airt/vbt#a21bddd":
+"vbt@github:airt/vbt#1a2294a":
   version "0.0.1"
-  resolved "https://codeload.github.com/airt/vbt/tar.gz/a21bddd"
+  resolved "https://codeload.github.com/airt/vbt/tar.gz/1a2294a"
   dependencies:
     autoprefixer "^6.0.0"
     babel-core "^6.0.0"

@@ -6,7 +6,7 @@ export default {
       url(`${url}/about`).
       waitForElementVisible('#app', 5000).
       assert.elementPresent('.about-view').
-      assert.containsText('h1', 'this is a vue app').
+      assert.containsText('h1', 'about vue').
       assert.count('img', 1).
       end()
   },

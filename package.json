@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "author": "airt <airtial@gmail.com>",
-  "license": "GPLv3",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/airt/xms-fe"

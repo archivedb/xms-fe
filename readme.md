@@ -32,9 +32,9 @@ npm run build --report
 
 ## license
 
-GPLv3
+MIT
 
-[build-badge]: https://img.shields.io/circleci/project/github/airt/xms-fe/develop.svg
-[build-status]: https://circleci.com/gh/airt/xms-fe
+[build-badge]: https://img.shields.io/travis/airt/xms-fe/develop.svg
+[build-status]: https://travis-ci.org/airt/xms-fe
 [coverage-badge]: https://img.shields.io/coveralls/airt/xms-fe/develop.svg
 [coverage-result]: https://coveralls.io/github/airt/xms-fe

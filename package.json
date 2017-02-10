@@ -36,7 +36,7 @@
     "tslint": "^4.0.0",
     "tslint-config-standard": "^3.0.0",
     "typescript": "^2.1.0",
-    "vbt": "github:airt/vbt#1a2294a"
+    "vbt": "github:airt/vbt#v0.0.1"
   },
   "entry": {
     "app": "src/index.js"

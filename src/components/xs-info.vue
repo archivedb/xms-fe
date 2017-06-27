@@ -19,6 +19,7 @@
       </el-table-column>
       <el-table-column
         v-for="prop in schemaProps"
+        :key="prop"
         :prop="prop"
         :label="prop | capitalize"
       />

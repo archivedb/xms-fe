@@ -1,9 +1,7 @@
 {
-  "comments": false,
   "presets": [
     "stage-2",
-    "latest"
-    // ["latest", { "es2015": { "modules": false } }]
+    ["env", { "modules": false }]
   ],
   "plugins": [
     "transform-runtime",

@@ -1,13 +1,13 @@
-import * as Vue from 'vue'
-import * as Router from 'vue-router'
+import Vue from 'vue'
+import Router from 'vue-router'
 import { RouteConfig } from 'vue-router'
 
-import * as About from './views/about.vue'
-import * as Fiddle from './views/fiddle.vue'
-import * as Routes from './views/routes.vue'
-import * as DashboardXs from './views/dashboard-xs.vue'
-import * as DashboardX from './views/dashboard-x.vue'
-import * as NotFound from './views/not-found.vue'
+import About from './views/about.vue'
+import Fiddle from './views/fiddle.vue'
+import Routes from './views/routes.vue'
+import DashboardXs from './views/dashboard-xs.vue'
+import DashboardX from './views/dashboard-x.vue'
+import NotFound from './views/not-found.vue'
 
 Vue.use(Router)
 

@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@types/qs": "^6.0.0",
-    "@types/whatwg-fetch": "^0.0.33",
     "element-ui": "^1.0.0",
     "qs": "^6.0.0",
     "timeout-ts": "^0.5.0",
@@ -35,8 +34,8 @@
     "eslint-plugin-standard": "^2.0.0",
     "tslint": "^4.0.0",
     "tslint-config-standard": "^3.0.0",
-    "typescript": "^2.1.0",
-    "vbt": "github:airt/vbt#v0.0.1"
+    "typescript": "^2.0.0",
+    "vbt": "^0.1.0"
   },
   "entry": {
     "app": "src/index.js"
@@ -45,10 +44,11 @@
     "dev": "vbt dev",
     "lint": "npm run lint:es && npm run lint:ts",
     "lint:es": "eslint '**/*.js' '**/*.vue'",
-    "lint:ts": "tslint '**/*.ts' --exclude '**/*.d.ts' --exclude 'node_modules/**/*'",
-    "test": "npm run test:unit && npm run test:e2e",
+    "lint:ts": "tslint '**/*.ts' -p tsconfig.json --type-check --exclude '**/*.d.ts' --exclude 'node_modules/**/*'",
+    "test": "vbt test",
     "test:unit": "vbt test unit",
     "test:e2e": "vbt test e2e",
-    "build": "vbt build"
+    "build": "vbt build",
+    "clean": "rm -rf dist test/e2e/reports test/unit/coverage"
   }
 }

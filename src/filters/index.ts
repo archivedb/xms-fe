@@ -1,6 +1,6 @@
 // https://cn.vuejs.org/v2/guide/syntax.html#Filters
 
-import * as Vue from 'vue'
+import Vue from 'vue'
 import installing from './installing'
 
 export const capitalize = (value: string): string =>

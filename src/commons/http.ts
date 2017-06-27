@@ -1,4 +1,4 @@
-import * as qs from 'qs'
+import qs from 'qs'
 
 import ResponseError, { ResponseErrorData } from './response-error'
 
@@ -34,7 +34,7 @@ export class HttpClient {
     // trace('[request] request args')({ url, actualRequestInit })
     const response = await fetch(url, actualRequestInit)
     await checkStatus(response)
-    const data = await response.json<T>()
+    const data = await response.json()
     // trace('[request] response data')(data)
     return data
   }

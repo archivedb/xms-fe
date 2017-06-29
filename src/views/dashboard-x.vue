@@ -33,11 +33,6 @@ export default {
       this.x = await XService.getById(xId)
     },
   },
-  watch: {
-    xId(value, oldValue) {
-      this.syncXInfo(value)
-    },
-  },
   created() {
     this.syncXInfo(this.xId)
   },

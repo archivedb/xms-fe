@@ -15,7 +15,7 @@ import { capitalize } from '../../filters'
 
 export default {
   props: {
-    siderItems: { type: Array, default: () => [] },
+    siderItems: { type: Array },
   },
   computed: {
     activeSiderItem() {

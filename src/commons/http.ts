@@ -29,7 +29,7 @@ export class HttpClient {
    * @tutorial https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
    * @rejects {ResponseError | SyntaxError | TypeError}
    */
-  apply = async <T>(url: string, requestInit: RequestInit = {}): Promise<T> => {
+  request = async <T>(url: string, requestInit: RequestInit = {}): Promise<T> => {
     const actualRequestInit = mergeRequestInit(this.defaultRequestInit, requestInit)
     // trace('[request] request args')({ url, actualRequestInit })
     const response = await fetch(url, actualRequestInit)
@@ -40,19 +40,19 @@ export class HttpClient {
   }
 
   get = <T>(url: string, data: Object) =>
-    this.apply<T>(`${url}?${qs.stringify(data)}`)
+    this.request<T>(`${url}?${qs.stringify(data)}`)
 
   post = <T>(url: string, data: Object) =>
-    this.apply<T>(url, { method: 'POST', body: JSON.stringify(data) })
+    this.request<T>(url, { method: 'POST', body: JSON.stringify(data) })
 
   put = <T>(url: string, data: Object) =>
-    this.apply<T>(url, { method: 'PUT', body: JSON.stringify(data) })
+    this.request<T>(url, { method: 'PUT', body: JSON.stringify(data) })
 
   patch = <T>(url: string, data: Object) =>
-    this.apply<T>(url, { method: 'PATCH', body: JSON.stringify(data) })
+    this.request<T>(url, { method: 'PATCH', body: JSON.stringify(data) })
 
   delete = <T>(url: string, data: Object) =>
-    this.apply<T>(`${url}?${qs.stringify(data)}`, { method: 'DELETE' })
+    this.request<T>(`${url}?${qs.stringify(data)}`, { method: 'DELETE' })
 
 }
 

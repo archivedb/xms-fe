@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import About from 'src/views/about.vue'
-import router from 'src/router'
+import About from '@/views/about.vue'
+import router from '@/router'
 
 describe('views/about.vue', () => {
   it('view about', async () => {

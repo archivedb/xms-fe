@@ -1,4 +1,4 @@
-import { createApp } from 'src/app'
+import { createApp } from '@/app'
 
 describe('app.ts', () => {
   it('function createApp', async () => {

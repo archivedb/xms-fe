@@ -1,4 +1,4 @@
-import { capitalize, inspect } from 'src/filters'
+import { capitalize, inspect } from '@/filters'
 
 describe('filters/index.ts', () => {
   it('function capitalize', async () => {

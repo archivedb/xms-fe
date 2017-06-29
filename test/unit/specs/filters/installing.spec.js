@@ -1,4 +1,4 @@
-import installing from 'src/filters/installing'
+import installing from '@/filters/installing'
 
 describe('filters/installing.ts', () => {
   it('function installing', async () => {

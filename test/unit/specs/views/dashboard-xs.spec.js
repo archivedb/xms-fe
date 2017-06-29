@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import DashboardXs from 'src/views/dashboard-xs.vue'
-import router from 'src/router'
+import DashboardXs from '@/views/dashboard-xs.vue'
+import router from '@/router'
 
 describe('views/dashboard-xs.vue', () => {
   it('view dashboard-xs', async () => {

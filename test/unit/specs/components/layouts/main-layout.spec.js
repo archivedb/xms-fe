@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import MainLayout from 'src/components/layouts/main-layout.vue'
-import router from 'src/router'
+import MainLayout from '@/components/layouts/main-layout.vue'
+import router from '@/router'
 
 describe('components/layouts/main-layout.vue', () => {
   it('component main-layout', () => {

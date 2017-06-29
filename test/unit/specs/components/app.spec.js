@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import App from 'src/components/app.vue'
-import router from 'src/router'
+import App from '@/components/app.vue'
+import router from '@/router'
 
 describe('components/app.vue', () => {
   it('component app', () => {

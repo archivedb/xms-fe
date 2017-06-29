@@ -1,10 +1,10 @@
 machine:
   node:
-    version: 7
+    version: 8
 
 test:
   override:
     - npm run lint
     - npm test
   post:
-    - npm install coveralls && cat test/unit/coverage/lcov.info | coveralls
+    - npm i coveralls && cat test/unit/coverage/lcov.info | coveralls
